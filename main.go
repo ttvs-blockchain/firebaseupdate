@@ -23,6 +23,8 @@ package main
 
 import (
 	"context"
+	"flag"
+	"fmt"
 	"log"
 
 	firebase "firebase.google.com/go"
@@ -33,6 +35,8 @@ import (
 )
 
 func main() {
+	num := flag.Int("n", 5, "# of iterations")
+	flag.Parse()
 	opt := option.WithCredentialsFile(constants.ServiceAccountKeyFilePath)
 	app, err := firebase.NewApp(context.Background(), nil, opt)
 	if err != nil {
@@ -45,12 +49,12 @@ func main() {
 	defer client.Close()
 	dao := storage.NewFirebaseCertificateDAO(client)
 	dao.DeleteAllCertificates(context.Background())
-	// _, _, err = client.Collection("users").Add(context.Background(), map[string]interface{}{
-	// 	"first": "Ada",
-	// 	"last":  "Lovelace",
-	// 	"born":  1815,
-	// })
-	// if err != nil {
-	// 	log.Fatalf("Failed adding alovelace: %v", err)
-	// }
+	fmt.Printf("Making stage %d dummy data\n", *num)
+	if *num == 1 {
+		storage.MakeStageOneDummyData(dao)
+	} else if *num == 2 {
+		storage.MakeStageTwoDummyData(dao)
+	} else if *num == 3 {
+		storage.MakeStageThreeDummyData(dao)
+	}
 }
