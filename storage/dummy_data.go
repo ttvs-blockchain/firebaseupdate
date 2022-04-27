@@ -6,7 +6,7 @@ import (
 	"github.com/ttvs-blockchain/firebaseupdate/models"
 )
 
-func MakeStageOneDummyData(dao *FirebaseCertificateDAO) error {
+func MakeStageOneDummyData(dao *FireStoreDAO) error {
 	ctx := context.Background()
 	dao.DeleteAllCertificates(ctx)
 	cert := models.NewFirebaseCertificate(models.LocalCertificate{
@@ -35,7 +35,7 @@ func MakeStageOneDummyData(dao *FirebaseCertificateDAO) error {
 	return nil
 }
 
-func MakeStageTwoDummyData(dao *FirebaseCertificateDAO) error {
+func MakeStageTwoDummyData(dao *FireStoreDAO) error {
 	ctx := context.Background()
 	dao.DeleteAllCertificates(ctx)
 	cert1 := models.NewFirebaseCertificate(models.LocalCertificate{
@@ -87,7 +87,7 @@ func MakeStageTwoDummyData(dao *FirebaseCertificateDAO) error {
 	return nil
 }
 
-func MakeStageThreeDummyData(dao *FirebaseCertificateDAO) error {
+func MakeStageThreeDummyData(dao *FireStoreDAO) error {
 	ctx := context.Background()
 	dao.DeleteAllCertificates(ctx)
 	cert1 := models.NewFirebaseCertificate(models.LocalCertificate{

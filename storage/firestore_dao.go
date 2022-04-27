@@ -9,21 +9,21 @@ import (
 	"google.golang.org/api/iterator"
 )
 
-type FirebaseCertificateDAO struct {
+type FireStoreDAO struct {
 	client *firestore.Client
 }
 
-func NewFirebaseCertificateDAO(client *firestore.Client) *FirebaseCertificateDAO {
-	return &FirebaseCertificateDAO{client: client}
+func NewFireStoreDAO(client *firestore.Client) *FireStoreDAO {
+	return &FireStoreDAO{client: client}
 }
 
-func (f *FirebaseCertificateDAO) AddNewCertificate(ctx context.Context,
+func (f *FireStoreDAO) AddNewCertificate(ctx context.Context,
 	cert *models.FirebaseCertificate) error {
 	_, _, err := f.client.Collection(constants.FirebaseCollectionName).Add(ctx, cert.Data())
 	return err
 }
 
-func (f *FirebaseCertificateDAO) DeleteAllCertificates(ctx context.Context) error {
+func (f *FireStoreDAO) DeleteAllCertificates(ctx context.Context) error {
 	for {
 		// Get a batch of documents
 		ref := f.client.Collection(constants.FirebaseCollectionName)
