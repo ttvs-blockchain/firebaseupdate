@@ -17,7 +17,7 @@ type LocalCertificate struct {
 	Issuer              string `gorm:"column:issuer"`
 	Remark              string `gorm:"column:remark"`
 	PersonHash          string `gorm:"column:personHash"`
-	MerkelTreePath      string `gorm:"column:merkelTreePath"`
+	MerkleTreePath      string `gorm:"column:merkleTreePath"`
 	LocalChainID        string `gorm:"column:localChainID"`
 	LocalChainTxHash    string `gorm:"column:localChainTxHash"`
 	LocalChainBlockNum  int    `gorm:"column:localChainBlockNum"`
@@ -32,7 +32,7 @@ func (*LocalCertificate) TableName() string {
 type GlobalChainInfo struct {
 	ID                   int
 	CertIDList           string `gorm:"column:certIDList"`
-	MerkelTreeRoot       string `gorm:"column:merkelTreeRoot"`
+	MerkleTreeRoot       string `gorm:"column:merkleTreeRoot"`
 	GlobalChainTxHash    string `gorm:"column:globalChainTxHash"`
 	GlobalChainBlockNum  int    `gorm:"column:globalChainBlockNum"`
 	GlobalChainTimestamp string `gorm:"column:globalChainTimeStamp"`

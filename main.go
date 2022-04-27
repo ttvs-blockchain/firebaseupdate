@@ -1,5 +1,38 @@
 package main
 
+import (
+	"context"
+	"flag"
+	"fmt"
+	"log"
+
+	firebase "firebase.google.com/go"
+	"github.com/ttvs-blockchain/firebaseupdate/config"
+	"github.com/ttvs-blockchain/firebaseupdate/constants"
+	"github.com/ttvs-blockchain/firebaseupdate/database"
+	"github.com/ttvs-blockchain/firebaseupdate/storage"
+	"google.golang.org/api/option"
+)
+
+func main() {
+	// load configurations
+	conf, err := config.ReadConfig()
+	if err != nil {
+		panic("Failed to load config" + err.Error())
+	}
+	// initialize MySQL
+	db, err := database.InitMySQL(conf)
+	if err != nil {
+		panic("Failed to load MySQL" + err.Error())
+	}
+	// initialize FireStore client
+	fs, err := database.InitFireStore(context.Background(), conf)
+	if err != nil {
+		panic("Failed to load FireStore" + err.Error())
+	}
+
+}
+
 // import (
 // 	"fmt"
 
@@ -21,22 +54,23 @@ package main
 // 	}
 // }
 
-import (
-	"context"
-	"flag"
-	"fmt"
-	"log"
+// import (
+// 	"context"
+// 	"flag"
+// 	"fmt"
+// 	"log"
 
-	firebase "firebase.google.com/go"
-	"github.com/ttvs-blockchain/firebaseupdate/constants"
-	"github.com/ttvs-blockchain/firebaseupdate/storage"
+// 	firebase "firebase.google.com/go"
+// 	"github.com/ttvs-blockchain/firebaseupdate/constants"
+// 	"github.com/ttvs-blockchain/firebaseupdate/storage"
 
-	"google.golang.org/api/option"
-)
+// 	"google.golang.org/api/option"
+// )
 
 func main() {
 	num := flag.Int("n", 5, "# of iterations")
 	flag.Parse()
+
 	opt := option.WithCredentialsFile(constants.ServiceAccountKeyFilePath)
 	app, err := firebase.NewApp(context.Background(), nil, opt)
 	if err != nil {

@@ -18,3 +18,5 @@
 
 secret.go
 serviceAccountKey.json
+firebaseupdate
+config.yml

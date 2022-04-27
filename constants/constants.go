@@ -1,7 +1,6 @@
 package constants
 
 const (
-	ServiceAccountKeyFilePath = "serviceAccountKey.json"
-	FirebaseCollectionName    = "certificates"
-	FirestoreDeleteBatchSize  = 10
+	FirebaseCollectionName   = "certificates"
+	FirestoreDeleteBatchSize = 10
 )
