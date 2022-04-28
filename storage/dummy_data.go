@@ -52,7 +52,7 @@ var (
 		96,
 		true)
 	dummyCert3 *models.FirebaseCertificate = models.NewFirebaseCertificate(models.LocalCertificate{
-		CertID:              "bc51f83b-c4c4-4349-b2f6-93c7faefb4c1",
+		CertID:              "871783c9-8210-4dae-9d18-5135aa9c5aec",
 		PersonID:            "ArTEXTPVgqVUU8rtNR1uFTSDwGJ3",
 		Name:                "CoroVac",
 		Brand:               "XYZ Co., Ltd.",
@@ -60,10 +60,10 @@ var (
 		IssueTime:           "2022-04-22 17:32:30",
 		Issuer:              "ABC Hospital",
 		Remark:              "No remark",
-		PersonHash:          "",
-		MerkleTreePath:      "test",
-		MerkleTreeIndexes:   "test",
-		GlobalRootID:        "test",
+		PersonHash:          "51db053938504e646c74f0d909bf94a1137a92eee0ca855ec77bacf22340598d",
+		MerkleTreePath:      "[\"2+BKKkLzbAJBfFZ7LluOmmkdcLKKbC4GCh5FN1aibvA=\"]",
+		MerkleTreeIndexes:   "[1]",
+		GlobalRootID:        "6f41ec50-1487-4d92-b2c4-e02d5d652657",
 		LocalChainID:        "local_chain_0",
 		LocalChainTxHash:    "c380779f6175766fdbe90940851fff3995d343c63bbb82f816843c1d5100865e",
 		LocalChainBlockNum:  1,
