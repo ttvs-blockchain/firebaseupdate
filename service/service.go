@@ -106,8 +106,9 @@ func (s *SimpleSYNCservice) Sync() error {
 
 func (s *SimpleSYNCservice) SyncWithTime(numMinutes int) {
 	ticker := time.NewTicker(time.Minute * time.Duration(numMinutes))
-	for now := range ticker.C {
-		fmt.Println("tick", now)
+	for range ticker.C {
+		s.Sync()
+		fmt.Printf("Synced at %v\n", time.Now())
 	}
 }
 
