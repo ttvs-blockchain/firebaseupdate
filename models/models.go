@@ -18,6 +18,8 @@ type LocalCertificate struct {
 	Remark              string `gorm:"column:remark"`
 	PersonHash          string `gorm:"column:personHash"`
 	MerkleTreePath      string `gorm:"column:merkleTreePath"`
+	MerkleTreeIndexes   string `gorm:"column:merkleTreeIndexes"`
+	GlobalRootID        string `gorm:"column:globalRootID"`
 	LocalChainID        string `gorm:"column:localChainID"`
 	LocalChainTxHash    string `gorm:"column:localChainTxHash"`
 	LocalChainBlockNum  int    `gorm:"column:localChainBlockNum"`
@@ -69,5 +71,8 @@ func NewFirebaseCertificate(localCert LocalCertificate, globalTxHash, globalTime
 		"local_chain_block_num":  localCert.LocalChainBlockNum,
 		"local_chain_timestamp":  localCert.LocalChainTimestamp,
 		"is_validated":           isValidated,
+		"merkle_tree_path":       localCert.MerkleTreePath,
+		"merkle_tree_indexes":    localCert.MerkleTreeIndexes,
+		"global_root_id":         localCert.GlobalRootID,
 	}}
 }
