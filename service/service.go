@@ -104,6 +104,22 @@ func (s *SimpleSYNCservice) Sync() error {
 	return nil
 }
 
+func (s *SimpleSYNCservice) SyncWithTime(numMinutes int) {
+	ticker := time.NewTicker(time.Minute * time.Duration(numMinutes))
+	quit := make(chan struct{})
+	go func() {
+		for {
+			select {
+			case <-ticker.C:
+				s.Sync()
+			case <-quit:
+				ticker.Stop()
+				return
+			}
+		}
+	}()
+}
+
 func parseChainTimestamp(s string) (string, error) {
 	if s == "" {
 		return "", nil
