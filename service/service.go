@@ -7,6 +7,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/ttvs-blockchain/firebaseupdate/constants"
 	"github.com/ttvs-blockchain/firebaseupdate/models"
 	"github.com/ttvs-blockchain/firebaseupdate/storage"
 )
@@ -62,14 +63,15 @@ func (s *SimpleSYNCservice) Sync() error {
 	}
 	var firebaseCertList []*models.FirebaseCertificate
 	for _, localCert := range localCertList {
-		localChainTime, err := parseTimestamp(localCert.LocalChainTimestamp)
+		localChainTime, err := parseChainTimestamp(localCert.LocalChainTimestamp)
 		if err != nil {
 			return err
 		}
 		localCert.LocalChainTimestamp = localChainTime
+		localCert.IssueTime = parseIssueTime(localCert.IssueTime)
 		fmt.Printf("Local Certificate: %v \n", localCert)
 		if globalInfo, ok := globalInfoMap[localCert.CertID]; ok {
-			globalChainTimestamp, err := parseTimestamp(globalInfo.globalChainTimestamp)
+			globalChainTimestamp, err := parseChainTimestamp(globalInfo.globalChainTimestamp)
 			if err != nil {
 				return err
 			}
@@ -102,13 +104,23 @@ func (s *SimpleSYNCservice) Sync() error {
 	return nil
 }
 
-func parseTimestamp(s string) (string, error) {
-	timestampInt64, err := strconv.ParseInt("1405544146", 10, 64)
+func parseChainTimestamp(s string) (string, error) {
+	if s == "" {
+		return "", nil
+	}
+	timestampInt64, err := strconv.ParseInt(s, 10, 64)
 	if err != nil {
 		return "", fmt.Errorf("time parsing error: %v", err)
 	}
+	fmt.Printf("Timestamp: %d(%s)\n", timestampInt64, s)
 	unixTime := time.Unix(timestampInt64, 0)
-	formattedTime := unixTime.Format("2006-01-02 15:04:05")
+	formattedTime := unixTime.Format(constants.DateTimeFormat)
 	fmt.Printf("Formatted time: %s\n", formattedTime)
 	return formattedTime, nil
+}
+
+func parseIssueTime(s string) string {
+	replaceT := strings.Replace(s, "T", " ", -1)
+	replaceZ := strings.Replace(replaceT, "Z", "", -1)
+	return replaceZ
 }
