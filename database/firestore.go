@@ -19,6 +19,5 @@ func InitFireStore(c context.Context, conf *config.Config) (*firestore.Client, e
 	if err != nil {
 		return nil, err
 	}
-	defer client.Close()
 	return client, nil
 }

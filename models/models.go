@@ -9,7 +9,7 @@ const (
 type LocalCertificate struct {
 	ID                  int    `gorm:"column:id"`
 	CertID              string `gorm:"column:certID"`
-	PersonID            string `gorm:"column:personID"`
+	PersonID            string `gorm:"column:personSysID"`
 	Name                string `gorm:"column:name"`
 	Brand               string `gorm:"column:brand"`
 	NumOfDose           int    `gorm:"column:numOfDose"`

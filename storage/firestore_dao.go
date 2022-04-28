@@ -59,3 +59,8 @@ func (f *FireStoreDAO) DeleteAllCertificates(ctx context.Context) error {
 		}
 	}
 }
+
+func (f *FireStoreDAO) Deinit() error {
+	err := f.client.Close()
+	return err
+}
