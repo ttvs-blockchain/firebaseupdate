@@ -106,18 +106,9 @@ func (s *SimpleSYNCservice) Sync() error {
 
 func (s *SimpleSYNCservice) SyncWithTime(numMinutes int) {
 	ticker := time.NewTicker(time.Minute * time.Duration(numMinutes))
-	quit := make(chan struct{})
-	go func() {
-		for {
-			select {
-			case <-ticker.C:
-				s.Sync()
-			case <-quit:
-				ticker.Stop()
-				return
-			}
-		}
-	}()
+	for now := range ticker.C {
+		fmt.Println("tick", now)
+	}
 }
 
 func parseChainTimestamp(s string) (string, error) {
@@ -128,10 +119,8 @@ func parseChainTimestamp(s string) (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("time parsing error: %v", err)
 	}
-	fmt.Printf("Timestamp: %d(%s)\n", timestampInt64, s)
 	unixTime := time.Unix(timestampInt64, 0)
 	formattedTime := unixTime.Format(constants.DateTimeFormat)
-	fmt.Printf("Formatted time: %s\n", formattedTime)
 	return formattedTime, nil
 }
 

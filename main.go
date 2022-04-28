@@ -34,7 +34,7 @@ func main() {
 	defer firestoreDAO.Deinit()
 	simpleSYNCservice := service.NewSimpleSYNCservice(ctx, localCertDAO, globalChainInfoDAO, firestoreDAO)
 
-	simpleSYNCservice.Sync()
+	simpleSYNCservice.SyncWithTime(30)
 }
 
 // import (
