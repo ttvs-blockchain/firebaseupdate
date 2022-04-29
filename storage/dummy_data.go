@@ -9,7 +9,7 @@ import (
 var (
 	dummyCert1 *models.FirebaseCertificate = models.NewFirebaseCertificate(models.LocalCertificate{
 		CertID:              "ab60838f-be5b-46ea-8fc5-d5c346a33f9c",
-		PersonID:            "ArTEXTPVgqVUU8rtNR1uFTSDwGJ3",
+		PersonID:            "cZixyM5gMpb8GkqVLTxvjUaEn6h2",
 		Name:                "CoroVac",
 		Brand:               "XYZ Co., Ltd.",
 		NumOfDose:           1,
@@ -31,7 +31,7 @@ var (
 		true)
 	dummyCert2 *models.FirebaseCertificate = models.NewFirebaseCertificate(models.LocalCertificate{
 		CertID:              "218e0af8-7b93-4a31-a3f3-7aad053c7b88",
-		PersonID:            "ArTEXTPVgqVUU8rtNR1uFTSDwGJ3",
+		PersonID:            "cZixyM5gMpb8GkqVLTxvjUaEn6h2",
 		Name:                "CoroVac",
 		Brand:               "XYZ Co., Ltd.",
 		NumOfDose:           2,
@@ -53,7 +53,7 @@ var (
 		true)
 	dummyCert3 *models.FirebaseCertificate = models.NewFirebaseCertificate(models.LocalCertificate{
 		CertID:              "871783c9-8210-4dae-9d18-5135aa9c5aec",
-		PersonID:            "ArTEXTPVgqVUU8rtNR1uFTSDwGJ3",
+		PersonID:            "cZixyM5gMpb8GkqVLTxvjUaEn6h2",
 		Name:                "CoroVac",
 		Brand:               "XYZ Co., Ltd.",
 		NumOfDose:           3,
